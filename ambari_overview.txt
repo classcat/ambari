@@ -31,6 +31,21 @@ jdk8
 再接続 (or 再ログイン)
 
 
+// java 設定
+
+# update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_05/bin/java" 1
+# update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.8.0_05/bin/javac" 1
+# update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.8.0_05/bin/javaws" 1
+
+# update-alternatives --config java
+# update-alternatives --config javac
+# update-alternatives --config javaws
+
+There is only one alternative in link group java (providing /usr/bin/java): /usr/lib/jvm/jdk1.8.0_05/bin/java
+Nothing to configure.
+
+/etc/profile.d/jdk.sh は削除
+
 
 ###
 ### ポート
@@ -55,9 +70,21 @@ cluster 間を通す
 
 2) 接続
 
-# ambari-server setup –j /usr/java/default
+# ambari-server setup
+
+custom jdk 
+
+/usr/lib/jvm/jdk1.8.0_05
+
 
 # ambari-server start
+
+
+3) web ui
+
+http://(host):8080/
+
+admin/admin
 
 
 3) ssh key 
@@ -68,11 +95,7 @@ id_rsa.pub を クラスタ上のノードに authoried_keys としてコピー�
 ssh で接続確認
 
 
-3) web ui
 
-http://(host):8080/
-
-admin/admin
 
 
 ###
