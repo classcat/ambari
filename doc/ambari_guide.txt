@@ -56,6 +56,8 @@ jdk8 をインストール
 (再接続 (or 再ログイン))
 
 
+--- 参考 (script で吸収) ---
+
 // java 設定
 
 # update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_05/bin/java" 1
@@ -75,8 +77,6 @@ Nothing to configure.
 java version "1.8.0_05"
 Java(TM) SE Runtime Environment (build 1.8.0_05-b13)
 Java HotSpot(TM) 64-Bit Server VM (build 25.5-b02, mixed mode)
-
-
 
 
 
@@ -114,10 +114,8 @@ ssh で接続確認
 
 
 
-
-
 ###
-### クラスタ
+### クラスタ・ノード
 ###
 
 ambari server の id_rsa.pub を authorized_keys として設定、
