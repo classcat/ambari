@@ -1,0 +1,7 @@
+
+
+http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.2/bk_spark-quickstart/content/ch_introduction-spark-quickstart.html
+
+yarn-cluster
+
+http://hortonworks.com/hadoop-tutorial/apache-spark-1-4-1-technical-preview-with-hdp/
