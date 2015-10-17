@@ -55,11 +55,14 @@ Nothing to configure.
 
 8080
 
-cluster node とは tcp だけでなく、icmp, udp も必要
+cluster node からは tcp を許可
+
 
 // cluster
 
-cluster 間を通す
+cluster node は ambari master の tcp だけでなく、icmp, udp も受け入れる必要がある
+
+cluster 間を tcp を許可
 
 
 ###
@@ -102,7 +105,10 @@ ssh で接続確認
 ### クラスタ
 ###
 
-ambari インストール後、
+ambari server の id_rsa.pub を authorized_keys として設定、
+ambari server から接続確認後、
+
+ambari によるインストール後、
 
 
 1) cassandra
