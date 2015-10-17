@@ -89,28 +89,37 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.5-b02, mixed mode)
 ### AMBARI サーバ
 ###
 
-1) install script
+1) install script :
 
-2) 接続
+# ./install_ambari.sh 
+
+
+2) setup
 
 # ambari-server setup
 
-custom jdk 
+Checking JDK ...
+Enter choice
+[3] Custom JDK
 
 /usr/lib/jvm/jdk1.8.0_05
 
 
+3) start
+
 # ambari-server start
 
 
-3) web ui
+4) web ui
 
 http://(host):8080/
 
 admin/admin
 
+* Intall Wizard の前に、SSH 設定。
 
-3) ssh key 
+
+5) SSH Key
 
 # ssh-keygen -t rsa -P ""
 
@@ -123,11 +132,25 @@ ssh で接続確認
 ### クラスタ・ノード
 ###
 
-ambari server の id_rsa.pub を authorized_keys として設定、
-ambari server から接続確認後、
+Ambari Server の id_rsa.pub をノード root の authorized_keys として設定、
+Ambari Server から接続確認。
 
-ambari によるインストール後、
 
+
+###
+### Ambari-Server Wizard によるインストール
+###
+
+HDP 2.3
+
+
+
+
+###
+### Others
+###
+
+Ambari によるインストール後、
 
 1) cassandra
 

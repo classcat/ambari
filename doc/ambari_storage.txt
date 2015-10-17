@@ -1,0 +1,4 @@
+
+AMBARI_METRICS 	hbase.rootdir 	file:///var/lib/ambari-metrics-collector/hbase 	
+Ambari Metrics disk space requirements not met. Recommended disk space for partition / is 10G
+Ambari Metrics service uses HBase as default storage backend. Set the rootdir for HBase to either local filesystem path if using Ambari Metrics in embedded mode or to a HDFS dir, example: hdfs://namenode.example.org:8020/amshbase. 

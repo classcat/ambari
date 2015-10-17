@@ -1,0 +1,60 @@
+
+[HDFS (2.7.1.2.3)]
+Apache Hadoop Distributed File System
+
+[YARN + MapReduce2 (2.7.1.2.3)
+Apache Hadoop NextGen MapReduce (YARN)
+
+[Tez (0.7.0.2.3)]
+Tez is the next generation Hadoop Query Processing framework written on top of YARN.
+
+[Hive (1.2.1.2.3)]
+Data warehouse system for ad-hoc queries & analysis of large datasets and table & storage management service
+
+[HBase (1.1.1.2.3)]
+A Non-relational distributed database, plus Phoenix, a high performance SQL layer for low latency applications.
+
+[Pig (0.15.0.2.3)]
+Scripting platform for analyzing large datasets
+
+[Sqoop (1.4.6.2.3)]
+Tool for transferring bulk data between Apache Hadoop and structured data stores such as relational databases
+
+[Oozie (4.2.0.2.3)]
+System for workflow coordination and execution of Apache Hadoop jobs. This also includes the installation of the optional Oozie Web Console which relies on and will install the ExtJS Library.
+
+[ZooKeeper (3.4.6.2.3)]
+Centralized service which provides highly reliable distributed coordination
+
+[Falcon (0.6.1.2.3)]
+Data management and processing platform
+
+[Storm (0.10.0)]
+Apache Hadoop Stream processing framework
+
+[Flume (1.5.2.2.3)]
+A distributed service for collecting, aggregating, and moving large amounts of streaming data into HDFS
+
+[Accumulo (1.7.0.2.3)]
+Robust, scalable, high performance distributed key/value store.
+
+[Ambari Metrics (0.1.0)]
+A system for metrics collection that provides storage and retrieval capability for metrics collected from the cluster
+
+[Atlas (0.5.0.2.3)]
+Atlas Metadata and Governance platform
+
+[Kafka (0.8.2.2.3)]
+A high-throughput distributed messaging system
+
+[Knox (0.6.0.2.3)]
+Provides a single point of authentication and access for Apache Hadoop services in a cluster
+
+[Mahout (0.9.0.2.3)]
+Project of the Apache Software Foundation to produce free implementations of distributed or otherwise scalable machine learning algorithms focused primarily in the areas of collaborative filtering, clustering and classification
+
+[Slider (0.80.0.2.3)]
+A framework for deploying, managing and monitoring existing distributed applications on YARN.
+
+[Spark (1.4.1.2.3)]
+Apache Spark is a fast and general engine for large-scale data processing.
