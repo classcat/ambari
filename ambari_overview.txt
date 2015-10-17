@@ -8,15 +8,28 @@ apt-get update
 apt-get -y upgrade
 sync && reboot
 
+
 // Ambari サーバ
 
+apt-get insatll -y ntp git
+
+git clone https://github.com/classcat/ambari.git
+
 jdk8
-ntp
+
+再接続 (or 再ログイン)
+
 
 // クラスタ
 
+apt-get insatll -y ntp git
+
+git clone https://github.com/classcat/ambari.git
+
 jdk8
-ntp
+
+再接続 (or 再ログイン)
+
 
 
 ###
@@ -40,12 +53,14 @@ cluster 間を通す
 
 1) install script
 
+2) 接続
+
 # ambari-server setup –j /usr/java/default
 
 # ambari-server start
 
 
-2) ssh key 
+3) ssh key 
 
 # ssh-keygen -t rsa -P ""
 
