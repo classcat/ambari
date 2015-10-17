@@ -5,6 +5,7 @@
 ###############################################################
 
 #--- HISTORY ----------------------------------------------------------
+# 17-oct-15 : discard jdk.sh, instead, use update-alternatives.
 # 15-oct-15 : change the path.
 # 15-oct-15 : fixed.
 #----------------------------------------------------------------------
@@ -26,11 +27,16 @@ mkdir -p /usr/lib/jvm
 
 mv jdk1.8.0_05 /usr/lib/jvm
 
-cat << _EOB_ > /etc/profile.d/jdk.sh
-export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_05
-export PATH=\$JAVA_HOME/bin:\$PATH
-#export PATH=\$PATH:\$JAVA_HOME/bin
-_EOB_
+#cat << _EOB_ > /etc/profile.d/jdk.sh
+#export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_05
+#export PATH=\$JAVA_HOME/bin:\$PATH
+##export PATH=\$PATH:\$JAVA_HOME/bin
+#_EOB_
+
+
+update-alternatives --install "/usr/bin/java"   "java"   "/usr/lib/jvm/jdk1.8.0_05/bin/java"   1
+update-alternatives --install "/usr/bin/javac"  "javac"  "/usr/lib/jvm/jdk1.8.0_05/bin/javac"  1
+update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.8.0_05/bin/javaws" 1
 
 
 exit 0
