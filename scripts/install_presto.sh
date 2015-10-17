@@ -5,6 +5,7 @@
 ###############################################################
 
 # --- HISOTRY -------------------------------------------------
+# 17-oct-15 : changed the port 8080 => 9000, and other values.
 # 15-oct-15 : chmod +x presto-cli.
 # -------------------------------------------------------------
 
@@ -58,9 +59,12 @@ if [ $COORDINATOR == "true" ]; then
   cat << _EOB3_ > $ETC_DIR/config.properties
 coordinator=true
 node-scheduler.include-coordinator=false
-http-server.http.port=8080
-query.max-memory=50GB
-query.max-memory-per-node=1GB
+http-server.http.port=9000
+#http-server.http.port=8080
+query.max-memory=24GB
+#query.max-memory=50GB
+query.max-memory-per-node=2GB
+#query.max-memory-per-node=1GB
 discovery-server.enabled=true
 discovery.uri=${COORDINATOR_URI}
 _EOB3_
@@ -79,9 +83,12 @@ else
 
   cat << _EOB3_ > $ETC_DIR/config.properties
 coordinator=false
-http-server.http.port=8080
-query.max-memory=50GB
-query.max-memory-per-node=1GB
+http-server.http.port=9000
+#http-server.http.port=8080
+query.max-memory=24GB
+#query.max-memory=50GB
+query.max-memory-per-node=2GB
+#query.max-memory-per-node=1GB
 discovery.uri=${COORDINATOR_URI}
 _EOB3_
 

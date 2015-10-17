@@ -148,6 +148,10 @@ discovery-server.enabled=true
 discovery.uri=http://10.0.0.102:9000
 #discovery.uri=http://10.0.0.102:8080
 
+// node.properties
+
+node.id は適宜変更
+
 # ./bin/launcher start
 Started as 15216
 

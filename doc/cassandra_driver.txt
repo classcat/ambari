@@ -5,24 +5,6 @@
 
 ### PRESTO
 
-// config.properties
-
-node-scheduler.include-coordinator=false
-
-は true にする。
-
-// node.properties
-
-node.id は適宜変更
-
-%%
-root で起動すれば jdk 8 のはず。
-
-# pwd
-/opt/presto-server
-root@ip-10-0-0-240:/opt/presto-server# ./bin/launcher start
-Started as 13643
-
 
  presto-cli --server localhost:8080 --catalog cassandra
 presto> show tables;
