@@ -157,6 +157,15 @@ Started as 15216
 
 # presto-cli --server 10.0.0.102:9000 --catalog cassandra --schema cctwitter;
 
+presto> show tables;
+Query 20151016_154527_00000_bxr2t failed: Schema must be specified when session schema is not set
+
+presto> show keyspaces;
+Query 20151016_154530_00001_bxr2t failed: line 1:6: no viable alternative at input 'show keyspaces'
+show keyspaces
+
+presto> show schemas;
+
 
 
 3) drill
