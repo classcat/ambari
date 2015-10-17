@@ -2,10 +2,64 @@
 
 ### 準備
 
-jdk
+// 共通
+
+apt-get update
+apt-get -y upgrade
+sync && reboot
+
+// Ambari サーバ
+
+jdk8
+ntp
+
+// クラスタ
+
+jdk8
+ntp
 
 
-### AMBARI
+###
+### AMBARI サーバ
+###
 
-ambari-server setup –j /usr/java/default
+1) install script
+
+# ambari-server setup –j /usr/java/default
+
+# ambari-server start
+
+
+2) ssh key 
+
+# ssh-keygen -t rsa -P ""
+
+id_rsa.pub を クラスタ上のノードに authoried_keys としてコピーして
+ssh で接続確認
+
+
+3) web ui
+
+http://(host):8080/
+
+admin/admin
+
+
+###
+### クラスタ
+###
+
+ambari インストール後、
+
+
+1) cassandra
+
+2) presto
+
+id をどうするか
+
+3) SPARK
+
+library の置き換え？
+
 
