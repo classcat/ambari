@@ -7,3 +7,5 @@ jdk
 
 ### AMBARI
 
+ambari-server setup –j /usr/java/default
+
