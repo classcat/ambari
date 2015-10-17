@@ -20,6 +20,21 @@ ntp
 
 
 ###
+### ポート
+###
+
+// ambari-server
+
+8080
+
+cluster node とは tcp だけでなく、icmp, udp も必要
+
+// cluster
+
+cluster 間を通す
+
+
+###
 ### AMBARI サーバ
 ###
 

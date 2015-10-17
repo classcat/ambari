@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt-get install ntp
+#apt-get install ntp
 
 cd /etc/apt/sources.list.d
 
@@ -17,8 +17,8 @@ apt-get install ambari-server
 # ambari-server start
 
 
-cd ~
+#cd ~
 
-ssh-keygen -t rsa -P ""
+#ssh-keygen -t rsa -P ""
 
 
