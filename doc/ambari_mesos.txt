@@ -1,9 +1,9 @@
 
 
-	/* Ambari インストールガイド */
+	/* Ambari & Mesos インストールガイド */
 
 
-                                                17-oct-2015
+                                                18-oct-2015
                                                 ClassCat Co.,Ltd.
 
 ###
@@ -107,10 +107,17 @@ Enter choice
 
 3) start
 
+ポートを変更するためには、
+以下を /etc/ambari-server/conf/ambari.properties に追加：
+
+client.api.port=9000
+
 # ambari-server start
 
 
 4) web ui
+
+http://(host):9000/
 
 http://(host):8080/
 
