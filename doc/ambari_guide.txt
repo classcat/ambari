@@ -150,17 +150,28 @@ HDP 2.3
 ### Others
 ###
 
-Ambari によるインストール後、
+Ambari によるインストール後、追加サービスをインストールする。
 
-1) cassandra
 
-service cassandra start
+/* (1) Cassandra */
 
-nodetool status
+* Seed をどのノードにするかは実運用では要決定。
 
-検証
+インストール後：
 
-2) presto
+# service cassandra start
+
+# nodetool status
+
+* cc-twitter による検証可能。
+
+
+/* (2) presto */
+
+インストール時、slave については COORDINATOR="false" を忘れないこと。
+
+# pwd
+/opt/presto-server/etc
 
 // config.properties
 
@@ -183,6 +194,8 @@ node.id は適宜変更
 # ./bin/launcher start
 Started as 15216
 
+* 検証は後回し
+
 # presto-cli --server 10.0.0.102:9000 --catalog cassandra --schema cctwitter;
 
 presto> show tables;
@@ -196,7 +209,9 @@ presto> show schemas;
 
 
 
-3) drill
+/* 3) Drill */
+
+# su - drill
 
 /opt/drill/conf をチェック
 
@@ -215,8 +230,10 @@ drill.exec: {
   zk.connect: "localhost:2181"
 }
 
+* ZooKeeper は複数ノードだがどちらを選択するか。
 
-su - drill
+./bin/drillbit.sh start
+
 
 
 (3) SPARK)

@@ -1,14 +1,20 @@
 
 
-### CASSANDRA
+/*** CASSANDRA 動作検証***/
 
-### 動作検証
 
-CREATE KEYSPACE cctwitter WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}  AND durable_writes = true;
+###
+### CQLSH 設定
+###
 
-USE cctwitter
 
-CREATE TABLE tweets (
+# cqlsh 10.0.0.54
+
+cqlsh> CREATE KEYSPACE cctwitter WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}  AND durable_writes = true;
+
+cqlsh> USE cctwitter;
+
+cqlsh:cctwitter> CREATE TABLE tweets (
    id_str text PRIMARY KEY,
    lang text,
    text text,
@@ -16,18 +22,28 @@ CREATE TABLE tweets (
    timestamp_ms varint
 );
 
+cqlsh:cctwitter> select count(*) from tweets;
+
+
 
 ###
-#### driver
+### driver
 ###
 
-$ sudo apt-get install -y python-pip
+# apt-get install -y python-pip
 
-$ sudo pip install oauth2
+# pip install oauth2
 
-$ sudo apt-get install -y build-essential python-dev libev4 libev-dev
+# apt-get install -y build-essential python-dev libev4 libev-dev
 
-$ sudo pip install cassandra-driver
+# pip install cassandra-driver
+
+
+### tweets 取り込み
+
+
+
+### presto
 
 $ presto-cli --server localhost:8080 --catalog cassandra --schema cctwitter
 presto:cctwitter> select count(*) from tweets;
