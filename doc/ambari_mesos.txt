@@ -1,0 +1,242 @@
+
+
+	/* Ambari インストールガイド */
+
+
+                                                17-oct-2015
+                                                ClassCat Co.,Ltd.
+
+###
+### ポート
+###
+
+// Ambari Server
+
+[src from : MyIP]
+o 8080 : Web UI
+
+[src from : cluster node]
+o TCP を許可
+
+
+// Cluster Node
+
+[src from : Ambari Server]
+o TCP だけでなく、icmp, udp も許可。
+
+[src from : other cluster nodes]
+o TCP を許可
+
+
+
+###
+### 準備 (Ambari サーバ & クラスタ・ノード共通)
+###
+
+// お約束
+
+# apt-get update
+# apt-get -y upgrade
+# sync && reboot
+
+# apt-get install -y ntp
+
+
+// git clone
+
+# apt-get install -y git
+
+# git clone https://github.com/classcat/ambari.git
+
+
+// jdk
+
+jdk8 をインストール :
+
+# ./install_jdk8.sh
+
+# java -version
+java version "1.8.0_05"
+Java(TM) SE Runtime Environment (build 1.8.0_05-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 25.5-b02, mixed mode)
+
+
+--- 参考 (script で吸収) ---
+
+// java 設定
+
+# update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_05/bin/java" 1
+# update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.8.0_05/bin/javac" 1
+# update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.8.0_05/bin/javaws" 1
+
+# update-alternatives --config java
+# update-alternatives --config javac
+# update-alternatives --config javaws
+
+There is only one alternative in link group java (providing /usr/bin/java): /usr/lib/jvm/jdk1.8.0_05/bin/java
+Nothing to configure.
+
+/etc/profile.d/jdk.sh は削除
+
+# java -version
+java version "1.8.0_05"
+Java(TM) SE Runtime Environment (build 1.8.0_05-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 25.5-b02, mixed mode)
+
+
+
+###
+### AMBARI サーバ
+###
+
+1) install script :
+
+# ./install_ambari.sh 
+
+
+2) setup
+
+# ambari-server setup
+
+Checking JDK ...
+Enter choice
+[3] Custom JDK
+
+/usr/lib/jvm/jdk1.8.0_05
+
+
+3) start
+
+# ambari-server start
+
+
+4) web ui
+
+http://(host):8080/
+
+admin/admin
+
+* Intall Wizard の前に、SSH 設定。
+
+
+5) SSH Key
+
+# ssh-keygen -t rsa -P ""
+
+id_rsa.pub を クラスタ上のノードに authoried_keys としてコピーして
+ssh で接続確認
+
+
+
+###
+### クラスタ・ノード
+###
+
+Ambari Server の id_rsa.pub をノード root の authorized_keys として設定、
+Ambari Server から接続確認。
+
+
+
+###
+### Ambari-Server Wizard によるインストール
+###
+
+HDP 2.3
+
+
+
+
+###
+### Others
+###
+
+Ambari によるインストール後、追加サービスをインストールする。
+
+
+/* (1) Cassandra */
+
+* Seed をどのノードにするかは実運用では要決定。
+
+インストール後：
+
+# service cassandra start
+
+# nodetool status
+
+* cc-twitter による検証可能。
+
+
+/* (2) presto */
+
+インストール時、slave については COORDINATOR="false" を忘れないこと。
+
+# pwd
+/opt/presto-server/etc
+
+// config.properties
+
+coordinator=true
+node-scheduler.include-coordinator=true
+#node-scheduler.include-coordinator=false
+http-server.http.port=9000
+#http-server.http.port=8080
+query.max-memory=8GB
+#query.max-memory=50GB
+query.max-memory-per-node=1GB
+discovery-server.enabled=true
+discovery.uri=http://10.0.0.102:9000
+#discovery.uri=http://10.0.0.102:8080
+
+// node.properties
+
+node.id は適宜変更
+
+# ./bin/launcher start
+Started as 15216
+
+* 検証は後回し
+
+# presto-cli --server 10.0.0.102:9000 --catalog cassandra --schema cctwitter;
+
+presto> show tables;
+Query 20151016_154527_00000_bxr2t failed: Schema must be specified when session schema is not set
+
+presto> show keyspaces;
+Query 20151016_154530_00001_bxr2t failed: line 1:6: no viable alternative at input 'show keyspaces'
+show keyspaces
+
+presto> show schemas;
+
+
+
+/* 3) Drill */
+
+# su - drill
+
+/opt/drill/conf をチェック
+
+以下を変更
+
+// drill-env.sh
+DRILL_MAX_DIRECT_MEMORY="2G"
+#DRILL_MAX_DIRECT_MEMORY="8G"
+DRILL_HEAP="1G"
+#DRILL_HEAP="4G"
+
+// drill-override.conf
+
+drill.exec: {
+  cluster-id: "drillbits1",
+  zk.connect: "localhost:2181"
+}
+
+* ZooKeeper は複数ノードだがどちらを選択するか。
+
+./bin/drillbit.sh start
+
+
+
+(3) SPARK)
+library の置き換え？
+
+
