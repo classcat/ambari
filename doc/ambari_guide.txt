@@ -37,7 +37,6 @@ o TCP を許可
 
 # apt-get update
 # apt-get -y upgrade
-# sync && reboot
 
 # apt-get install -y ntp
 
