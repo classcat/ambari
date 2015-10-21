@@ -72,9 +72,11 @@ vm.swappiness = 0
 (# sysctl -w vm.swappiness=0
 vm.swappiness = 0)
 
+
 // 再起動
 
 # sync && reboot
+
 
 // 確認
 
