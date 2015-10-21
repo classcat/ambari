@@ -42,6 +42,56 @@ o TCP を許可
 # apt-get install -y ntp
 
 
+// swap file 作成
+
+ambari server は少なめ
+
+/etc/rc.localに追記 :
+
+SWAPFILENAME=/swap.img
+# MEMSIZE=`cat /proc/meminfo | grep MemTotal | awk '{print $2}'`
+# SIZE=${((MEMSIZE * 2))}k
+# SIZE=${MEMSIZE}k
+# SIZE=${((MEMSIZE / 2))}k
+SIZE=4194304k
+# SIZE=2097152k
+fallocate -l $SIZE $SWAPFILENAME && mkswap $SWAPFILENAME && swapon $SWAPFILENAME
+
+参考：
+http://dev.classmethod.jp/cloud/ec2linux-swap-bestpractice/
+
+
+// Swap 設定
+
+ambari server は不要
+
+/etc/sysctl.conf
+vm.swappiness = 0
+
+(# echo 0 > /proc/sys/vm/swappiness)
+
+(# sysctl -w vm.swappiness=0
+vm.swappiness = 0)
+
+// 再起動
+
+# sync && reboot
+
+// 確認
+
+# cat /proc/sys/vm/swappiness
+0
+
+# free -h
+             total       used       free     shared    buffers     cached
+Mem:          7.8G       198M       7.6G       348K        14M        77M
+-/+ buffers/cache:       106M       7.7G
+Swap:         4.0G         0B       4.0G
+
+# ls -lh /swap.img 
+-rw-r--r-- 1 root root 4.0G Oct 19 16:38 /swap.img
+
+
 // git clone
 
 # apt-get install -y git
