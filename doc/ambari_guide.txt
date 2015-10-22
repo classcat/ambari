@@ -3,7 +3,7 @@
 	/* Ambari インストールガイド */
 
 
-                                                18-oct-2015
+                                                23-oct-2015
                                                 ClassCat Co.,Ltd.
 
 ###
@@ -188,7 +188,8 @@ admin/admin
 ### Ambari-Server Wizard によるインストール
 ###
 
-HDP 2.3
+インストール完了後、
+s3n 用の設定を行なう。
 
 
 
