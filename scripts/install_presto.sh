@@ -5,6 +5,7 @@
 ###############################################################
 
 # --- HISOTRY -------------------------------------------------
+# 23-oct-15 : hive.properties
 # 17-oct-15 : changed the port 8080 => 9000, and other values.
 # 15-oct-15 : chmod +x presto-cli.
 # -------------------------------------------------------------
@@ -101,10 +102,15 @@ _EOB4_
 
 mkdir -p $ETC_DIR/catalog
 
-  cat << _EOB5_ > $ETC_DIR/catalog/cassandra.properties
+cat << _EOB5_ > $ETC_DIR/catalog/cassandra.properties
 connector.name=cassandra
 cassandra.contact-points=${CASSANDRA_HOST}
 _EOB5_
+
+cat << _EOB6_ > $ETC_DIR/catalog/hive.properties
+connector.name=hive-hadoop2
+hive.metastore.uri=${HIVE_THRIFT_HOST}
+_EOB6_
 
 
 ### CLI
