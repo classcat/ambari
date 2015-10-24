@@ -5,6 +5,7 @@
 ###############################################################
 
 # --- HISOTRY -------------------------------------------------
+# 24-oct-15 : postgresql.properties
 # 23-oct-15 : hive.properties
 # 17-oct-15 : changed the port 8080 => 9000, and other values.
 # 15-oct-15 : chmod +x presto-cli.
@@ -111,6 +112,13 @@ cat << _EOB6_ > $ETC_DIR/catalog/hive.properties
 connector.name=hive-hadoop2
 hive.metastore.uri=${HIVE_THRIFT_HOST}
 _EOB6_
+
+cat << _EOB7_ > $ETC_DIR/catalog/postgresql.properties
+connector.name=postgresql
+connection-url=${POSTGRESQL_URL}
+connection-user=${POSTGRESQL_UESR}
+connection-password=${POSTGRESQL_PASS}
+_EOB7_
 
 
 ### CLI
