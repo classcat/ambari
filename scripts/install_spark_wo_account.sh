@@ -27,6 +27,6 @@ cp -p /opt/spark/conf/log4j.properties.template /opt/spark/conf/log4j.properties
 sed -i.bak -e "s/^log4j\.rootCategory\s*=\s*INFO.*/log4j.rootCategory=WARN, console/" /opt/spark/conf/log4j.properties
 
 echo 'export PATH=/opt/spark/bin:$PATH' > /home/ubuntu/.bash_profile
-chown ubuntu:ubuntu /home/spark/.bash_profile
+chown ubuntu:ubuntu /home/ubuntu/.bash_profile
 
 exit 0

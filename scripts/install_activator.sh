@@ -25,4 +25,6 @@ unzip typesafe-activator-1.3.6-minimal.zip
 
 ln -s /opt/packages/activator-1.3.6-minimal /opt/activator
 
+chmod 0755 /opt/activator/activator
+
 ln -s /opt/activator/activator /usr/local/bin/activator
